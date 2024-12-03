@@ -1,0 +1,14 @@
+input[type="range"] {
+    width: 300px;
+}
+
+#block {
+    width: 250px;
+    height: 250px;
+    background-color: #F0E68C;
+    margin: 20px; /* Simplified margin for clarity */
+}
+
+body {
+    background-color: #E6E6FA;
+}

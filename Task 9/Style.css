@@ -1,0 +1,24 @@
+body{
+    background-color: #E6E6FA;
+}
+table, th, td{
+    border: 1px dashed #483D8B;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+th, td{
+    padding: 10px;
+    text-align: center;
+}
+p{
+    padding: 10px;
+    text-align: center;
+    color: #008B8B;
+    font-size: 40px;
+}
+button{
+    font-size: 25px;
+    color: red;
+    background-color: #F0E68C;
+}

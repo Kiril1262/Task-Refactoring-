@@ -1,0 +1,21 @@
+body{
+    background-color: #E6E6FA;
+}
+#gallery{
+    width: 920px;
+    background-color: #FFDEAD;
+}
+img{
+    width: 300px;
+}
+.photo{
+    padding: 5px
+}
+.active{
+    opacity: 1;
+    filter: grayscale(0%);
+}
+.inactive{
+    opacity: 0.5;
+    filter: grayscale(100%);
+}

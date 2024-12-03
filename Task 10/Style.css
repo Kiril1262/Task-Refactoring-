@@ -1,0 +1,45 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: #E6E6FA;
+}
+
+.slider-container{
+    position: relative;
+    width: 1500px;
+    overflow: hidden;
+}
+.slider{
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide{
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+img{
+    width: 1500px;
+    display: block;
+}
+
+.prev, .next{
+    position: absolute;
+    top: 50%;
+    color: black;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.prev{
+    left: 10px;
+}
+
+.next{
+    right: 10px;
+}
