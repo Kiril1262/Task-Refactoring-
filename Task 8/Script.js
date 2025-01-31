@@ -1,12 +1,25 @@
 const image = document.getElementById('toggleImage');
 const button = document.getElementById('toggleButton');
 
-// Збереження початкових розмірів
-const originalWidth = image.width;
-const originalHeight = image.height;
+let originalWidth, originalHeight;
 let isOriginalSize = true;
 
-button.addEventListener('click', function() {
+// Переконуємося, що зображення завантажене перед отриманням розмірів
+image.onload = function () {
+    originalWidth = image.naturalWidth;
+    originalHeight = image.naturalHeight;
+
+    // Встановлюємо початкові розміри, щоб уникнути проблем із CSS
+    image.style.width = originalWidth + 'px';
+    image.style.height = originalHeight + 'px';
+};
+
+// Якщо зображення вже завантажене (наприклад, кешоване), викликаємо onload вручну
+if (image.complete) {
+    image.onload();
+}
+
+button.addEventListener('click', function () {
     if (isOriginalSize) {
         image.style.width = originalWidth * 2 + 'px';
         image.style.height = originalHeight * 2 + 'px';
