@@ -3,7 +3,7 @@ const selectedEmailsDiv = document.getElementById('selected-emails');
 
 emailsList.forEach(email => {
     email.addEventListener('change', () => {
-        const selectedEmails = Array.from(emailsList)
+        const selectedEmails = [...emailsList] // Використання спред-оператора
             .filter(email => email.checked)
             .map(email => email.value);
 
