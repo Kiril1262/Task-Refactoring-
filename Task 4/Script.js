@@ -1,6 +1,3 @@
-let score = 0;
-let num1, num2;
-
 const scoreElement = document.getElementById('score');
 const questionElement = document.getElementById('question');
 const resultElement = document.getElementById('result');
@@ -8,35 +5,45 @@ const answerInput = document.getElementById('answer');
 const checkButton = document.getElementById('checkButton');
 const nextButton = document.getElementById('nextButton');
 
-// Функція для генерації нового завдання
+let score = 0;
+let currentQuestion = { num1: 0, num2: 0 };
+
+function updateResult(isCorrect, correctAnswer = null) {
+    if (isCorrect) {
+        resultElement.textContent = 'Правильно!';
+        resultElement.style.color = 'green';
+    } else {
+        resultElement.textContent = `Неправильно! Правильна відповідь: ${correctAnswer}`;
+        resultElement.style.color = 'red';
+    }
+}
+
 function generateQuestion() {
-    num1 = Math.floor(Math.random() * 10) + 1;
-    num2 = Math.floor(Math.random() * 10) + 1;
-    questionElement.textContent = `Завдання: ${num1} × ${num2}`;
+    currentQuestion.num1 = Math.floor(Math.random() * 10) + 1;
+    currentQuestion.num2 = Math.floor(Math.random() * 10) + 1;
+    questionElement.textContent = `Завдання: ${currentQuestion.num1} × ${currentQuestion.num2}`;
     resultElement.textContent = '';
     answerInput.value = '';
 }
 
-// Функція для перевірки відповіді
 function checkAnswer() {
     const userAnswer = parseInt(answerInput.value, 10);
-    const correctAnswer = num1 * num2;
+    const correctAnswer = currentQuestion.num1 * currentQuestion.num2;
 
     if (userAnswer === correctAnswer) {
-        resultElement.textContent = 'Правильно!';
-        resultElement.style.color = 'green';
         score++;
+        updateResult(true);
     } else {
-        resultElement.textContent = `Неправильно! Правильна відповідь: ${correctAnswer}`;
-        resultElement.style.color = 'red';
+        updateResult(false, correctAnswer);
     }
 
     scoreElement.textContent = score;
 }
 
-// Додати події до кнопок
-checkButton.addEventListener('click', checkAnswer);
-nextButton.addEventListener('click', generateQuestion);
+function initEvents() {
+    checkButton.addEventListener('click', checkAnswer);
+    nextButton.addEventListener('click', generateQuestion);
+}
 
-// Генерувати перше завдання
 generateQuestion();
+initEvents();
