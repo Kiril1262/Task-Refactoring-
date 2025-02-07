@@ -44,10 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         isAnswerChecked = false;
     }
 
-    answersForm.addEventListener("change", (event) => {
-        if (isAnswerChecked) return;
-
-        const selectedAnswer = parseInt(event.target.value, 10);
+    function checkAnswer(selectedAnswer) {
         if (selectedAnswer === correctAnswer) {
             resultElement.textContent = "Правильно!";
             resultElement.style.color = "green";
@@ -58,6 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         scoreElement.textContent = score;
+    }
+
+    answersForm.addEventListener("change", (event) =>
+    {
+        if (isAnswerChecked) return;
+
+        const selectedAnswer = parseInt(event.target.value, 10);
+        checkAnswer(selectedAnswer);
+
         isAnswerChecked = true;
     });
 

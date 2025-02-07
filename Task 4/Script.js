@@ -1,5 +1,3 @@
-let score = 0;
-let num1, num2;
 
 const scoreElement = document.getElementById('score');
 const questionElement = document.getElementById('question');
@@ -8,35 +6,41 @@ const answerInput = document.getElementById('answer');
 const checkButton = document.getElementById('checkButton');
 const nextButton = document.getElementById('nextButton');
 
-// Функція для генерації нового завдання
-function generateQuestion() {
-    num1 = Math.floor(Math.random() * 10) + 1;
-    num2 = Math.floor(Math.random() * 10) + 1;
-    questionElement.textContent = `Завдання: ${num1} × ${num2}`;
-    resultElement.textContent = '';
-    answerInput.value = '';
-}
-
-// Функція для перевірки відповіді
-function checkAnswer() {
-    const userAnswer = parseInt(answerInput.value, 10);
-    const correctAnswer = num1 * num2;
-
-    if (userAnswer === correctAnswer) {
-        resultElement.textContent = 'Правильно!';
-        resultElement.style.color = 'green';
-        score++;
-    } else {
-        resultElement.textContent = `Неправильно! Правильна відповідь: ${correctAnswer}`;
-        resultElement.style.color = 'red';
+class MathQuiz
+{
+    constructor()
+    {
+        this.score = 0;
+        this.num1 = 0;
+        this.num2 = 0;
     }
 
-    scoreElement.textContent = score;
+    generateQuestion()
+    {
+        this.num1 = Math.floor(Math.random() * 10) + 1;
+        this.num2 = Math.floor(Math.random() * 10) + 1;
+        questionElement.textContent = `Завдання: ${this.num1} × ${this.num2}`;
+        resultElement.textContent = '';
+        answerInput.value = '';
+    }
+
+    checkAnswer(userAnswer)
+    {
+        const correctAnswer = this.num1 * this.num2;
+
+        if (userAnswer === correctAnswer) {
+            resultElement.textContent = 'Правильно!';
+            resultElement.style.color = 'green';
+            this.score++;
+        } else {
+            resultElement.textContent = `Неправильно! Правильна відповідь: ${correctAnswer}`;
+            resultElement.style.color = 'red';
+        }
+
+        scoreElement.textContent = this.score;
+    }
 }
-
-// Додати події до кнопок
-checkButton.addEventListener('click', checkAnswer);
-nextButton.addEventListener('click', generateQuestion);
-
-// Генерувати перше завдання
-generateQuestion();
+    const quiz = new MathQuiz();
+    checkButton.addEventListener('click', () => quiz.checkAnswer(parseInt(answerInput.value, 10)));
+    nextButton.addEventListener('click', () => quiz.generateQuestion());
+    quiz.generateQuestion();
