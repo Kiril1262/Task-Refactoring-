@@ -5,28 +5,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultElement = document.getElementById("result");
     const nextButton = document.getElementById("next");
 
+    const MAX_RANDOM_NUMBER = 10;
+    const MAX_FAKE_ANSWER = 100;
+    const ANSWER_OPTIONS_COUNT = 4;
+
     let score = 0;
     let correctAnswer = 0;
     let isAnswerChecked = false;
 
     function generateQuestion() {
-        const num1 = Math.floor(Math.random() * 10) + 1;
-        const num2 = Math.floor(Math.random() * 10) + 1;
+        const num1 = Math.floor(Math.random() * MAX_RANDOM_NUMBER) + 1;
+        const num2 = Math.floor(Math.random() * MAX_RANDOM_NUMBER) + 1;
         correctAnswer = num1 * num2;
 
         questionElement.textContent = `${num1} × ${num2}`;
         resultElement.textContent = "";
 
         const answers = [];
-        const correctPosition = Math.floor(Math.random() * 4);
+        const correctPosition = Math.floor(Math.random() * ANSWER_OPTIONS_COUNT);
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < ANSWER_OPTIONS_COUNT; i++) {
             if (i === correctPosition) {
                 answers.push(correctAnswer);
             } else {
                 let fakeAnswer;
                 do {
-                    fakeAnswer = Math.floor(Math.random() * 100) + 1;
+                    fakeAnswer = Math.floor(Math.random() * MAX_FAKE_ANSWER) + 1;
                 } while (answers.includes(fakeAnswer) || fakeAnswer === correctAnswer);
                 answers.push(fakeAnswer);
             }
